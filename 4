@@ -1,22 +1,23 @@
 import random
-import pandas as pd
+import string
 
-# 生成姓名、日期、房间号数据
-data = []
-for i in range(1, 10001):
-    name = ''.join(random.sample('abcdefghijklmnopqrstuvwxyz', 5))
-    date = '{}/{}/{}'.format(random.randint(2000, 2022), random.randint(1, 12), random.randint(1, 28))
-    room = random.randint(1, 100)
-    data.append([name, date, room])
+# 生成随机的学生信息
+def generate_student_info():
+    sno = ''.join(random.choices(string.digits, k=8))  # 8位数字学号
+    sname = ''.join(random.choices(string.ascii_letters, k=random.randint(5, 10)))  # 随机长度为5到10的字母姓名
+    year = random.randint(1995, 2005)  # 随机生日的年份
+    month = random.randint(1, 12)  # 随机生日的月份
+    if month in [1, 3, 5, 7, 8, 10, 12]:  # 根据月份随机生成日子
+        day = random.randint(1, 31)
+    elif month in [4, 6, 9, 11]:
+        day = random.randint(1, 30)
+    else:
+        day = random.randint(1, 28)
+    sbrith = f'{year}-{month:02}-{day:02}'  # 以 yyyy-mm-dd 格式存储生日
+    saddr = ''.join(random.choices(string.ascii_letters, k=random.randint(10, 20)))  # 随机长度为10到20的地址
+    return f'{sno} \t {sname} \t {sbrith} \t {saddr}\n'  # 将四个信息使用 tab 分隔符拼接后返回
 
-# 将数据排序并生成序号
-data.sort(key=lambda x: random.random())  # 按照随机数排序
-data_with_index = [[i+1]+d for i, d in enumerate(data)]
-
-# 将数据保存为CSV文件
-df = pd.DataFrame(data_with_index, columns=['序号', '姓名', '日期', '房间号'])
-df.to_csv('data.csv', index=False, encoding='utf-8')
-
-# 输出数据到控制台
-pd.set_option('display.max_rows', None)
-print(df)
+# 生成并保存10000条学生信息
+with open('students.txt', 'w') as f:
+    for i in range(10000):
+        f.write(generate_student_info())
