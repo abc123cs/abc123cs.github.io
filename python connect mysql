@@ -1,0 +1,38 @@
+import pymysql
+from flask import Flask,render_template,redirect,url_for
+
+app = Flask(__name__)        
+conn = pymysql.connect(host = 'localhost',user = 'root',password= '123456',db = 'kp')
+
+
+cursor = conn.cursor()
+records =[('John','passwd1','123456677'),('Mary','passwd1','123456677'),
+        ('Jack','passwd1','123456677')]
+sql="create table if not exists users(username char(10) not null,password varchar(200) not null,tel char(11) not null)"
+cursor.execute(sql)
+conn.commit()
+
+for row in records:
+    sql2="insert into users(username,password,tel) values (%s, %s, %s)"
+    cursor.execute(sql2,row)
+conn.commit()
+
+sql3= "select * from users"
+cursor.execute(sql3)
+data = cursor.fetchall()
+print(data)
+
+sql4 = "update users set tel =%s where username = %s"
+cursor.execute(sql4,('12345678','zkp'))
+conn.commit()
+sql5 = "delete from users where username = %s"
+cursor.execute(sql5,('zkp'))
+conn.commit()
+@app.route('/')
+def index():
+    return redirect(url_for('search'))
+@app.route('/search/')
+def search():
+    return render_template('search.html',info=data)
+if __name__=="__main__":
+    app.run(debug=True)
