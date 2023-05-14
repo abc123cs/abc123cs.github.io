@@ -1,0 +1,3 @@
+jinja2.exceptions.TemplateNotFound
+
+jinja2.exceptions.TemplateNotFound: search.html
