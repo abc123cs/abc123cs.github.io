@@ -1,0 +1,5 @@
+cat b.txt | xargs wget -c
+wget: missing URL
+Usage: wget [OPTION]... [URL]...
+
+Try `wget --help' for more options.
