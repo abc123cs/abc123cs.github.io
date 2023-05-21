@@ -1,3 +1,3 @@
-sudo find /-size +200M -exec ls-lh{}\;
-find: missing argument to `-exec'
-sudo find / -size +200M -exec ls -lh {} ;
+local data local infile '/home/airpeng/coding2/db/in.txt' into table student character set utf8 fields terminated by'';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'local data local infile '/home/airpeng/coding2/db/in.txt' into table student cha' at line 1
+
