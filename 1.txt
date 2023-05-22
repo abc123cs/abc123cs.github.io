@@ -1,4 +1,5 @@
-|xargs tar -czvf images.tar.gz
+find -type f -name"*.jpg"-print |xargs tar -czvf images.tar.gz
 find: unknown predicate `-name*.jpg-print'
 tar: Cowardly refusing to create an empty archive
 Try 'tar --help' or 'tar --usage' for more information.
+
