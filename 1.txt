@@ -1,5 +1,4 @@
-find -type f -name"*.jpg"-print |xargs tar -czvf images.tar.gz
-find: unknown predicate `-name*.jpg-print'
-tar: Cowardly refusing to create an empty archive
-Try 'tar --help' or 'tar --usage' for more information.
+mysql> alter table student modify index idx;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index idx' at line 1
+
 
