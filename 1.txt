@@ -1,4 +1,26 @@
-mysql> alter table student modify index idx;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index idx' at line 1
-
-
+import re
+def get_words(txt):
+    words = re.split('[\s,:."!*] ',txt)
+    for char in '?{}!,."()*><=+-\'://#[]':
+        txt = txt.replace(char,' ')
+    words = txt.split()
+    return words
+def sort_top(words):
+    counts = {}
+    for w in words:
+       counts[w] = counts.get(w,0)+1
+       res = list(counts.items())
+       res.sort(key=lambda x:x[1],reverse=True)
+       return res
+if __name__=='__main__':
+    with open('hello.txt','r')as f:
+        txt = f.read()
+    words = get_words(txt)
+    print(words)
+    c = 0
+    for w in words:
+        if w == "hello":
+            c += 1
+    print(c)
+    results = sort_top(words)
+    print(results)
