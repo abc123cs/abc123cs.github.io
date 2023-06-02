@@ -1,2 +1,7 @@
-mysql> create trigger t_update_goods after update on goods for each row begin if New.goods_price >100 then set New.goods_name = concat('gaoduan',New.goods_name) end if;
-ERROR 1362 (HY000): Updating of NEW row is not allowed in after trigger
+CREATE TRIGGER t_update_goods BEFORE UPDATE ON goods
+       FOR EACH ROW 
+       BEGIN 
+           IF New.goods_price >100 THEN 
+               SET New.goods_name = CONCAT('gaoduan',New.goods_name); 
+           END IF; 
+       END;
