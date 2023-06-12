@@ -1,4 +1,43 @@
-FileNotFoundError: [Errno 2] No usable temporary directory found in ['/home/airpeng/anaconda3/install_tmp', '/tmp', '/var/tmp', '/usr/tmp', '/home/airpeng/anaconda3']
-[32283] Failed to execute script entry_point
+import redis
 
+r = redis.StrictRedis(decode_responses=True)
+bool = redis.ConnectionPool(host='127.0.0.1',port=6379,db=0,decode_responses = True)
+p = redis.Redis(connection_pool=pool)
 
+print(r.set('name','zkp'))
+print(r.get('name'))
+print(r.getrange('name',0,-1))
+myDict = {'age':10,'sex':f}
+print(r.mset(myDict))
+print(r.mget('age','sex'))
+
+print(r.hset('hash','name','zkp'))
+print(r.hget('hash','name'))
+print(r.hgetall('hash'))
+print(r.hmset('hash',myDict))
+print(r.hmset('hash','name','age'))
+print(r.hkeys('hash'))
+print(r.hvals('hash'))
+
+print(r.lpush('list',5,8,9,10))
+print(r.lrange('list',0,-1))
+print(r.rpush('list',55))
+print(r.lpop('list'))
+print(r.lrange('list',0,-1))
+
+print(r.sadd('set','a','b','iot'))
+print(r.sadd('set1','aa','bb','iotdiff'))
+print(r.smembers('set1'))
+print(r.sdiff('set1','set'))
+print(r.sinter('set1','set'))
+print(r.smembers('set'))
+print(r.scard('set'))
+print(r.srandmember('set1',2))
+
+mapping = {'a':1,'b':12}
+print(r.zadd('zadd'.mapping=mapping))
+print(r.zcard('zadd'))
+print(r.zscore('zadd','a'))
+print(r.expire('zadd',100))
+print(r.persist('zadd'))
+                                     
