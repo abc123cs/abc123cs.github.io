@@ -1,0 +1,13 @@
+ CHK     include/linux/version.h
+  CHK     include/generated/utsrelease.h
+make[1]: 'include/generated/mach-types.h' is up to date.
+  CC      kernel/bounds.s
+gcc: error: unrecognized argument in option ‘-mabi=apcs-gnu’
+gcc: note: valid arguments to ‘-mabi=’ are: ms sysv
+gcc: error: unrecognized command line option ‘-mlittle-endian’; did you mean ‘-fconvert=little-endian’?
+gcc: error: unrecognized command line option ‘-mapcs’; did you mean ‘-maes’?
+gcc: error: unrecognized command line option ‘-mno-sched-prolog’; did you mean ‘-Wno-sign-promo’?
+/home/zkp/coding/linux-3.0.8/./Kbuild:35: recipe for target 'kernel/bounds.s' failed
+make[1]: *** [kernel/bounds.s] Error 1
+Makefile:985: recipe for target 'prepare0' failed
+make: *** [prepare0] Error 2
