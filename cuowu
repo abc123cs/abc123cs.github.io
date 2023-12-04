@@ -1,4 +1,15 @@
- CHK     include/linux/version.h
+HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/kconfig/conf.o
+  HOSTCC  scripts/kconfig/zconf.tab.o
+  HOSTLD  scripts/kconfig/conf
+scripts/kconfig/conf --silentoldconfig Kconfig
+warning: (GFS2_FS) selects DLM which has unmet direct dependencies (EXPERIMENTAL && INET && SYSFS && CONFIGFS_FS && (IPV6 || IPV6=n))
+warning: (IMA) selects TCG_TPM which has unmet direct dependencies (HAS_IOMEM && EXPERIMENTAL)
+warning: (SCHED_AUTOGROUP) selects CGROUP_SCHED which has unmet direct dependencies (CGROUPS && EXPERIMENTAL)
+warning: (GFS2_FS) selects DLM which has unmet direct dependencies (EXPERIMENTAL && INET && SYSFS && CONFIGFS_FS && (IPV6 || IPV6=n))
+warning: (IMA) selects TCG_TPM which has unmet direct dependencies (HAS_IOMEM && EXPERIMENTAL)
+warning: (SCHED_AUTOGROUP) selects CGROUP_SCHED which has unmet direct dependencies (CGROUPS && EXPERIMENTAL)
+  CHK     include/linux/version.h
   CHK     include/generated/utsrelease.h
 make[1]: 'include/generated/mach-types.h' is up to date.
   CC      kernel/bounds.s
@@ -11,3 +22,4 @@ gcc: error: unrecognized command line option ‘-mno-sched-prolog’; did you me
 make[1]: *** [kernel/bounds.s] Error 1
 Makefile:985: recipe for target 'prepare0' failed
 make: *** [prepare0] Error 2
+
